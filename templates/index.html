@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spam Classifier</title>
+    <style>
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form textarea {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            resize: none;
+        }
+
+        form textarea:focus {
+            border-color: #74ebd5;
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.4s, transform 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: linear-gradient(to right, #ACB6E5, #74ebd5);
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 10px;
+            color: #555;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Spam Message Classifier</h2>
+        <form method="POST">
+            <textarea name="message" rows="5" placeholder="Enter your message here..."></textarea><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h3>Result: {{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
